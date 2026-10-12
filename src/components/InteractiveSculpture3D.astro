@@ -1,0 +1,361 @@
+---
+---
+
+<section class="py-16 sm:py-24 bg-gradient-to-b from-[#FAF6F0] via-[#FDFBF7] to-[#FAF6F0] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="relative rounded-[2.5rem] sm:rounded-[3rem] bg-[#FAF4EC] border border-[#EFE4D8] p-6 sm:p-12 lg:p-16 shadow-[0_15px_45px_rgba(44,24,16,0.05)] overflow-hidden">
+      
+      <!-- Top Section Header -->
+      <div class="max-w-2xl mx-auto text-center mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCECEF] text-xs font-semibold tracking-wider text-[#E34A6F] uppercase mb-3">
+          <span>✦</span>
+          Interactive Atelier 3D Study
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl text-[#2C1810] tracking-tight">
+          Sculptural Form in <span class="text-[#E34A6F] italic font-normal">360° Harmony</span>
+        </h2>
+        <p class="text-sm sm:text-base text-[#6B554B] font-light mt-2">
+          Interact with our digital architectural tier study. Rotate, inspect geometric proportions, and explore the balance of negative space and gilded botanicals.
+        </p>
+      </div>
+
+      <!-- Canvas Container & Interactive Controls Wrapper -->
+      <div class="relative w-full max-w-4xl mx-auto h-[420px] sm:h-[500px] rounded-3xl bg-gradient-to-b from-[#FFFDF9] to-[#FAF6F0] border border-[#EFE4D8] shadow-inner overflow-hidden flex items-center justify-center">
+        
+        <!-- Three.js Canvas -->
+        <canvas id="sculpture-3d-canvas" class="w-full h-full cursor-grab active:cursor-grabbing outline-none" aria-label="Interactive 3D cake sculpture model"></canvas>
+
+        <!-- Subtle Canvas Ambient Vignette -->
+        <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(250,246,240,0.6)_100%)]"></div>
+
+        <!-- Interactive 3D Control Pills -->
+        <div class="absolute bottom-4 left-4 right-4 sm:left-auto sm:right-6 flex flex-wrap items-center justify-center gap-2 z-10 pointer-events-auto">
+          <button 
+            id="toggle-rotate-btn" 
+            type="button" 
+            class="px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#EFE4D8] text-xs font-medium text-[#2C1810] hover:bg-[#E34A6F] hover:text-white transition-all shadow-xs"
+          >
+            Pause Rotation
+          </button>
+          <button 
+            id="reset-cam-btn" 
+            type="button" 
+            class="px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#EFE4D8] text-xs font-medium text-[#2C1810] hover:bg-[#E34A6F] hover:text-white transition-all shadow-xs"
+          >
+            Reset Angle
+          </button>
+          <div class="hidden sm:flex items-center px-3 py-1.5 rounded-full bg-[#FDF1CE]/90 border border-[#FAEAAC] text-[11px] font-semibold text-[#6B554B]">
+            <span>Drag to Orbit • Pinch to Zoom</span>
+          </div>
+        </div>
+
+        <!-- Loading indicator placeholder -->
+        <div id="sculpture-loader" class="absolute inset-0 flex items-center justify-center bg-[#FAF6F0] transition-opacity duration-500 pointer-events-none">
+          <div class="flex flex-col items-center gap-3">
+            <span class="w-8 h-8 rounded-full border-2 border-[#E34A6F] border-t-transparent animate-spin"></span>
+            <span class="text-xs font-serif text-[#6B554B] tracking-wider uppercase">Loading Atelier 3D Centerpiece...</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById('sculpture-3d-canvas') as HTMLCanvasElement;
+  const loader = document.getElementById('sculpture-loader');
+  const toggleRotateBtn = document.getElementById('toggle-rotate-btn');
+  const resetCamBtn = document.getElementById('reset-cam-btn');
+
+  if (canvas) {
+    let isInitialized = false;
+    let isRotating = true;
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let animationFrameId: number;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) isRotating = false;
+
+    // Initialize Three.js scene dynamically only when canvas is visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !isInitialized) {
+          isInitialized = true;
+          initThree();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(canvas);
+
+    async function initThree() {
+      const THREE = await import('three');
+
+      let renderer: InstanceType<typeof THREE.WebGLRenderer> | null = null;
+      let scene: InstanceType<typeof THREE.Scene> | null = null;
+      let camera: InstanceType<typeof THREE.PerspectiveCamera> | null = null;
+      let cakeGroup: InstanceType<typeof THREE.Group> | null = null;
+      let particlesGroup: InstanceType<typeof THREE.Group> | null = null;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xFAF6F0);
+      scene.fog = new THREE.FogExp2(0xFAF6F0, 0.04);
+
+      camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
+      camera.position.set(0, 4.5, 12);
+      camera.lookAt(0, 1.2, 0);
+
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setSize(width, height, false);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+      // Lights: Warm luxury lighting
+      const ambientLight = new THREE.AmbientLight(0xFFFBF5, 1.4);
+      scene.add(ambientLight);
+
+      const mainLight = new THREE.DirectionalLight(0xFFF0DD, 2.2);
+      mainLight.position.set(6, 12, 8);
+      mainLight.castShadow = true;
+      scene.add(mainLight);
+
+      const rimLight = new THREE.DirectionalLight(0xE34A6F, 0.8);
+      rimLight.position.set(-8, 5, -6);
+      scene.add(rimLight);
+
+      const softFill = new THREE.PointLight(0xFDF1CE, 1.2, 20);
+      softFill.position.set(0, -2, 6);
+      scene.add(softFill);
+
+      // Procedural Haute Cake Model
+      cakeGroup = new THREE.Group();
+
+      // Pedestal / Cake Stand
+      const standMat = new THREE.MeshStandardMaterial({
+        color: 0xE8D8C3,
+        roughness: 0.25,
+        metalness: 0.65
+      });
+      const standBase = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.8, 0.35, 48), standMat);
+      standBase.position.y = -1.2;
+      cakeGroup.add(standBase);
+
+      const standStem = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 1.4, 1.2, 32), standMat);
+      standStem.position.y = -0.6;
+      cakeGroup.add(standStem);
+
+      const standPlate = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, 0.2, 48), standMat);
+      standPlate.position.y = 0;
+      cakeGroup.add(standPlate);
+
+      // Materials
+      const ivoryFondant = new THREE.MeshStandardMaterial({
+        color: 0xFFFCF7,
+        roughness: 0.7,
+        metalness: 0.05
+      });
+
+      const blushVelvet = new THREE.MeshStandardMaterial({
+        color: 0xFCECEF,
+        roughness: 0.8,
+        metalness: 0.02
+      });
+
+      const strawberryAccent = new THREE.MeshStandardMaterial({
+        color: 0xE34A6F,
+        roughness: 0.4,
+        metalness: 0.2
+      });
+
+      const goldFoilMat = new THREE.MeshStandardMaterial({
+        color: 0xE5C07B,
+        roughness: 0.2,
+        metalness: 0.85
+      });
+
+      // Bottom Tier (Ivory, 4.8 dia, 1.8 height)
+      const bottomTier = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, 1.8, 48), ivoryFondant);
+      bottomTier.position.y = 1.0;
+      cakeGroup.add(bottomTier);
+
+      // Bottom Tier Pearl Bead Trim
+      const beadGeo = new THREE.SphereGeometry(0.09, 16, 16);
+      for (let i = 0; i < 36; i++) {
+        const angle = (i / 36) * Math.PI * 2;
+        const bead = new THREE.Mesh(beadGeo, goldFoilMat);
+        bead.position.set(Math.cos(angle) * 2.42, 0.15, Math.sin(angle) * 2.42);
+        cakeGroup.add(bead);
+      }
+
+      // Middle Tier (Blush Pink, 3.6 dia, 1.6 height)
+      const midTier = new THREE.Mesh(new THREE.CylinderGeometry(1.8, 1.8, 1.6, 48), blushVelvet);
+      midTier.position.y = 2.7;
+      cakeGroup.add(midTier);
+
+      // Middle Tier Gold Ribbon
+      const ribbon = new THREE.Mesh(new THREE.CylinderGeometry(1.82, 1.82, 0.15, 48), goldFoilMat);
+      ribbon.position.y = 2.0;
+      cakeGroup.add(ribbon);
+
+      // Top Tier (Ivory with Strawberry Accent, 2.4 dia, 1.5 height)
+      const topTier = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 1.5, 48), ivoryFondant);
+      topTier.position.y = 4.25;
+      cakeGroup.add(topTier);
+
+      // Sculpted Flower Crown Finial on Top
+      const flowerCore = new THREE.Mesh(new THREE.SphereGeometry(0.35, 24, 24), strawberryAccent);
+      flowerCore.position.y = 5.2;
+      cakeGroup.add(flowerCore);
+
+      // Petals orbiting finial
+      const petalGeo = new THREE.CylinderGeometry(0.35, 0.05, 0.7, 16);
+      petalGeo.rotateX(Math.PI / 3);
+      for (let i = 0; i < 7; i++) {
+        const angle = (i / 7) * Math.PI * 2;
+        const petal = new THREE.Mesh(petalGeo, blushVelvet);
+        petal.position.set(Math.cos(angle) * 0.45, 5.25, Math.sin(angle) * 0.45);
+        petal.rotation.y = -angle;
+        cakeGroup.add(petal);
+      }
+
+      // Floating Ambient Gold & Rose Dust
+      particlesGroup = new THREE.Group();
+      const particleCount = 45;
+      const pGeo = new THREE.SphereGeometry(0.06, 8, 8);
+      for (let i = 0; i < particleCount; i++) {
+        const mat = (i % 2 === 0) ? goldFoilMat : strawberryAccent;
+        const particle = new THREE.Mesh(pGeo, mat);
+        particle.position.set(
+          (Math.random() - 0.5) * 8,
+          Math.random() * 6 - 0.5,
+          (Math.random() - 0.5) * 8
+        );
+        particle.userData = {
+          speedY: 0.005 + Math.random() * 0.008,
+          rotSpeed: 0.01 + Math.random() * 0.02,
+          radius: 2.5 + Math.random() * 2,
+          angle: Math.random() * Math.PI * 2
+        };
+        particlesGroup.add(particle);
+      }
+      scene.add(particlesGroup);
+
+      scene.add(cakeGroup);
+
+      // Hide loader
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 500);
+      }
+
+      // Handle Resize
+      window.addEventListener('resize', onWindowResize);
+
+      // Mouse Drag Interaction
+      canvas.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging || !cakeGroup) return;
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+
+        cakeGroup.rotation.y += deltaX * 0.008;
+        cakeGroup.rotation.x = Math.max(-0.2, Math.min(0.4, cakeGroup.rotation.x + deltaY * 0.005));
+
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Touch Drag Interaction
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isDragging = true;
+          previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging || !cakeGroup || e.touches.length !== 1) return;
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+
+        cakeGroup.rotation.y += deltaX * 0.008;
+        cakeGroup.rotation.x = Math.max(-0.2, Math.min(0.4, cakeGroup.rotation.x + deltaY * 0.005));
+
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+
+      // Controls buttons
+      toggleRotateBtn?.addEventListener('click', () => {
+        isRotating = !isRotating;
+        toggleRotateBtn.textContent = isRotating ? 'Pause Rotation' : 'Resume Rotation';
+      });
+
+      resetCamBtn?.addEventListener('click', () => {
+        if (cakeGroup) {
+          cakeGroup.rotation.x = 0;
+          cakeGroup.rotation.y = 0;
+        }
+      });
+
+      // Start render loop
+      animate();
+    }
+
+    function onWindowResize() {
+      if (!camera || !renderer || !canvas) return;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    }
+
+    function animate() {
+      animationFrameId = requestAnimationFrame(animate);
+
+      if (cakeGroup && isRotating && !isDragging) {
+        cakeGroup.rotation.y += 0.006;
+      }
+
+      if (particlesGroup) {
+        particlesGroup.children.forEach((p) => {
+          const ud = p.userData;
+          ud.angle += 0.004;
+          p.position.y += ud.speedY;
+          if (p.position.y > 6.5) p.position.y = -1;
+          p.rotation.x += ud.rotSpeed;
+          p.rotation.y += ud.rotSpeed;
+        });
+      }
+
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
+      }
+    }
+  }
+</script>

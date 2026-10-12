@@ -1,0 +1,129 @@
+---
+---
+
+<header class="sticky top-0 z-50 w-full transition-all duration-300 backdrop-blur-md bg-[#FAF6F0]/85 border-b border-[#F0E4D8]/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo / Wordmark -->
+      <a href="#" class="group flex items-center gap-2.5 text-decoration-none focus:outline-none focus:ring-2 focus:ring-[#E34A6F] rounded-lg p-1">
+        <span class="w-8 h-8 rounded-full bg-[#FCECEF] border border-[#F7D6DC] flex items-center justify-center text-[#E34A6F] font-serif text-lg font-bold shadow-xs transition-transform duration-300 group-hover:scale-105">
+          ✦
+        </span>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl sm:text-[26px] tracking-tight font-medium text-[#2C1810] group-hover:text-[#E34A6F] transition-colors">
+            CakeyTales
+          </span>
+          <span class="text-[10px] tracking-[0.2em] uppercase text-[#6B554B] -mt-1 font-sans font-semibold">
+            Bespoke Cake Atelier
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B554B]" aria-label="Main Navigation">
+        <a href="#hero" class="hover:text-[#E34A6F] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#E34A6F] hover:after:w-full after:transition-all">
+          Home
+        </a>
+        <a href="#creations" class="hover:text-[#E34A6F] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#E34A6F] hover:after:w-full after:transition-all">
+          Creations
+        </a>
+        <a href="#story" class="hover:text-[#E34A6F] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#E34A6F] hover:after:w-full after:transition-all">
+          My Story
+        </a>
+        <a href="#signature" class="hover:text-[#E34A6F] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#E34A6F] hover:after:w-full after:transition-all">
+          Signature Piece
+        </a>
+        <a href="#process" class="hover:text-[#E34A6F] transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-[#E34A6F] hover:after:w-full after:transition-all">
+          Process
+        </a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <a 
+          href="#enquiries" 
+          class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-[#E34A6F] hover:bg-[#CF375C] rounded-full shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-[#E34A6F] focus:ring-offset-2"
+        >
+          Custom Enquiries
+          <svg class="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="flex md:hidden">
+        <button 
+          id="mobile-menu-button"
+          type="button" 
+          class="p-2 rounded-lg text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/60 focus:outline-none focus:ring-2 focus:ring-[#E34A6F]"
+          aria-expanded="false" 
+          aria-controls="mobile-menu"
+          aria-label="Toggle Navigation Menu"
+        >
+          <svg class="h-6 w-6 stroke-current" fill="none" viewBox="0 0 24 24">
+            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Navigation -->
+  <div id="mobile-menu" class="hidden md:hidden border-b border-[#F0E4D8] bg-[#FAF6F0] px-4 pt-2 pb-6 space-y-3 transition-all duration-300">
+    <div class="flex flex-col space-y-2 pt-2">
+      <a href="#hero" class="mobile-link px-3 py-2 text-base font-medium text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/40 rounded-lg">Home</a>
+      <a href="#creations" class="mobile-link px-3 py-2 text-base font-medium text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/40 rounded-lg">Creations</a>
+      <a href="#story" class="mobile-link px-3 py-2 text-base font-medium text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/40 rounded-lg">My Story</a>
+      <a href="#signature" class="mobile-link px-3 py-2 text-base font-medium text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/40 rounded-lg">Signature Piece</a>
+      <a href="#process" class="mobile-link px-3 py-2 text-base font-medium text-[#2C1810] hover:text-[#E34A6F] hover:bg-[#FCECEF]/40 rounded-lg">Process</a>
+    </div>
+    <div class="pt-4 border-t border-[#F0E4D8]/60 flex flex-col gap-3">
+      <a 
+        href="#enquiries" 
+        class="mobile-link w-full text-center py-3 text-sm font-semibold text-white bg-[#E34A6F] hover:bg-[#CF375C] rounded-full shadow-sm"
+      >
+        Custom Enquiries
+      </a>
+      <div class="flex items-center justify-center gap-6 pt-2 text-xs text-[#6B554B]">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#E34A6F] transition-colors flex items-center gap-1">
+          <span>Instagram</span>
+          <span>↗</span>
+        </a>
+        <a href="https://wa.me" target="_blank" rel="noopener noreferrer" class="hover:text-[#E34A6F] transition-colors flex items-center gap-1">
+          <span>WhatsApp Direct</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const close = document.getElementById('close-icon');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (button && menu && hamburger && close) {
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+      hamburger.classList.toggle('hidden');
+      close.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+        button.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

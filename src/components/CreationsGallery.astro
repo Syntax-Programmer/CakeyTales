@@ -1,0 +1,457 @@
+---
+interface CakeItem {
+  id: string;
+  title: string;
+  category: "Wedding Cakes" | "Sculptural Cakes" | "Celebration Cakes" | "Signature Designs";
+  tag: string;
+  image: string;
+  description: string;
+  medium: string;
+  occasion: string;
+  flavors: string;
+  gridSpan: string;
+  heightClass: string;
+}
+
+const creations: CakeItem[] = [
+  {
+    id: "cake-1",
+    title: "The Ivory Slipper & Botanical Gardenia",
+    category: "Wedding Cakes",
+    tag: "3-Tier Architectural",
+    image: "/images/cake-1.jpg",
+    description: "An ethereal triple-tier wedding centerpiece featuring hand-sculpted sugar gardenias, subtle cream ribbing, and delicate blush undertones.",
+    medium: "Hand-pulled wafer paper florals, Tahitian vanilla bean chiffon, Swiss meringue",
+    occasion: "Bespoke Summer Estate Wedding",
+    flavors: "Madagascar vanilla, wild strawberry compote, champagne buttercream",
+    gridSpan: "col-span-12 lg:col-span-8",
+    heightClass: "h-[420px] sm:h-[480px]"
+  },
+  {
+    id: "cake-2",
+    title: "Petals in Solitude",
+    category: "Sculptural Cakes",
+    tag: "Contemporary Texture",
+    image: "/images/cake-2.jpg",
+    description: "Textured palette-knife buttercream with abstract sculptural folds inspired by Kyoto clay vessels and wild meadow blossoms.",
+    medium: "Palette knife impasto, organic dried lavender, edible rose crystals",
+    occasion: "Modern Art Gallery Reception",
+    flavors: "Earl Grey infusion, blackberry reduction, honey buttercream",
+    gridSpan: "col-span-12 lg:col-span-4",
+    heightClass: "h-[420px] sm:h-[480px]"
+  },
+  {
+    id: "cake-3",
+    title: "Monceau Gilded Tier",
+    category: "Wedding Cakes",
+    tag: "French Heritage",
+    image: "/images/cake-3.jpg",
+    description: "Regal ivory tiers crowned with 24-karat edible gold flecks and hand-piped neoclassical swags celebrating timeless romance.",
+    medium: "24k gold leaf, organic passionfruit ganache, almond dacquoise",
+    occasion: "Black-Tie Estate Nuptials",
+    flavors: "Almond sponge, passionfruit silk, French buttercream",
+    gridSpan: "col-span-12 sm:col-span-6 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  },
+  {
+    id: "cake-4",
+    title: "Blush Mirage & Spring Peony",
+    category: "Celebration Cakes",
+    tag: "Velvet Buttercream",
+    image: "/images/cake-4.jpg",
+    description: "Delicate strawberry velvet ombre finish supporting an oversized handmade sugar peony with spun-sugar pistils.",
+    medium: "Wafer paper peony, strawberry blossom infusion, white peach confit",
+    occasion: "Milestone Anniversary",
+    flavors: "White peach chiffon, elderflower mousse, raspberry glaze",
+    gridSpan: "col-span-12 sm:col-span-6 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  },
+  {
+    id: "cake-5",
+    title: "Velvet Noir & Roasted Hazelnut",
+    category: "Signature Designs",
+    tag: "Haute Chocolate",
+    image: "/images/cake-5.jpg",
+    description: "Deep 72% Valrhona dark chocolate mirror glaze offset by roasted hazelnut praline textures and spun amber sugar.",
+    medium: "Dark mirror glaze, Valrhona Guanaja cocoa, candied hazelnut bark",
+    occasion: "Intimate Autumn Soirée",
+    flavors: "Dark chocolate ganache, hazelnut feuilletine, salted caramel",
+    gridSpan: "col-span-12 sm:col-span-12 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  },
+  {
+    id: "cake-6",
+    title: "Fête de Printemps",
+    category: "Celebration Cakes",
+    tag: "Vintage Lambeth",
+    image: "/images/cake-6.jpg",
+    description: "Intricately piped Victorian Lambeth borders in pale butter-yellow and strawberry pink with royal icing scrollwork.",
+    medium: "Traditional Lambeth piping, Madagascar vanilla bean, raspberry coulis",
+    occasion: "Editorial Birthday Celebration",
+    flavors: "Meyer lemon sponge, raspberry blossom, vanilla bean Swiss buttercream",
+    gridSpan: "col-span-12 lg:col-span-6",
+    heightClass: "h-[400px]"
+  },
+  {
+    id: "cake-7",
+    title: "The Alabaster Monolith",
+    category: "Sculptural Cakes",
+    tag: "Minimalist Modern",
+    image: "/images/cake-7.jpg",
+    description: "Sharp architectural angles softened by hand-torn wafer sails and subtle mineral textures evoking Grecian limestone.",
+    medium: "Wafer paper sails, edible mineral dust, Earl Grey & bergamot curd",
+    occasion: "Bespoke Design Gala",
+    flavors: "Bergamot olive oil cake, mascarpone cream, pear compote",
+    gridSpan: "col-span-12 lg:col-span-6",
+    heightClass: "h-[400px]"
+  },
+  {
+    id: "cake-8",
+    title: "La Vie Bohème Grand Tier",
+    category: "Wedding Cakes",
+    tag: "Botanical Cascade",
+    image: "/images/cake-8.jpg",
+    description: "Four cascading tiers wrapped in edible pressed botanicals, apricot garden roses, and silver eucalyptus leaves.",
+    medium: "Pressed organic edible botanicals, orange blossom sponge, honey buttercream",
+    occasion: "Vineyard Sunset Wedding",
+    flavors: "Orange blossom chiffon, wild honey buttercream, pistachio praline",
+    gridSpan: "col-span-12 sm:col-span-6 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  },
+  {
+    id: "cake-9",
+    title: "Wild Berries & Pistachio Sponge",
+    category: "Celebration Cakes",
+    tag: "Rustic Haute",
+    image: "/images/cake-9.jpg",
+    description: "Bronzed Sicilian pistachio layers layered with whipped mascarpone chantilly and crowned with forest berries.",
+    medium: "Bronte pistachio praline, wild raspberries, elderflower syrup",
+    occasion: "Alfresco Garden Gathering",
+    flavors: "Sicilian pistachio cake, whipped chantilly, elderflower berry glaze",
+    gridSpan: "col-span-12 sm:col-span-6 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  },
+  {
+    id: "cake-10",
+    title: "The Porcelain Bloom",
+    category: "Signature Designs",
+    tag: "Porcelain Finish",
+    image: "/images/cake-10.jpg",
+    description: "Ultra-smooth porcelain white Swiss meringue adorned with hyper-realistic hand-sculpted sugar moth orchids.",
+    medium: "Sugar moth orchids, Meyer lemon sponge, rosemary blackberry coulis",
+    occasion: "Private Couture Commission",
+    flavors: "Meyer lemon sponge, blackberry curd, rosemary buttercream",
+    gridSpan: "col-span-12 lg:col-span-4",
+    heightClass: "h-[380px] sm:h-[420px]"
+  }
+];
+
+const categories = [
+  "All Creations",
+  "Wedding Cakes",
+  "Sculptural Cakes",
+  "Celebration Cakes",
+  "Signature Designs"
+];
+---
+
+<section id="creations" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  
+  <!-- Section Editorial Header -->
+  <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCECEF] text-xs font-semibold tracking-wider text-[#E34A6F] uppercase mb-4">
+      <span>✦</span>
+      Curated Portfolio & Archive
+    </div>
+    <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C1810] tracking-tight mb-4">
+      A Collection of <span class="text-[#E34A6F] italic font-normal">Sweet Creations</span>
+    </h2>
+    <p class="text-base sm:text-lg text-[#6B554B] font-light leading-relaxed">
+      Each cake is a singular commission conceived in conversation with you. Designed with architectural grace, seasonal botanical textures, and heirloom flavor palettes for grand weddings and landmark celebrations.
+    </p>
+    <div class="mt-3 text-xs tracking-wider uppercase text-[#8E7A70]">
+      Bespoke Portfolio Catalogue • 10 Signature Works
+    </div>
+  </div>
+
+  <!-- Lightweight Category Filters -->
+  <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12" role="tablist" aria-label="Portfolio filters">
+    {categories.map((cat, index) => (
+      <button
+        type="button"
+        data-filter={cat}
+        class={`filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#E34A6F] cursor-pointer ${
+          index === 0
+            ? "active bg-[#E34A6F] text-white shadow-sm"
+            : "bg-[#FFFDF9] text-[#6B554B] hover:text-[#2C1810] hover:bg-[#FCECEF]/60 border border-[#EFE4D8]"
+        }`}
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+
+  <!-- Editorial Asymmetric Grid of 10 Creations -->
+  <div id="portfolio-grid" class="grid grid-cols-12 gap-6 sm:gap-8">
+    {creations.map((item) => (
+      <article
+        class={`portfolio-card ${item.gridSpan} group transition-all duration-500`}
+        data-category={item.category}
+        data-title={item.title}
+        data-medium={item.medium}
+        data-occasion={item.occasion}
+        data-flavors={item.flavors}
+        data-desc={item.description}
+        data-image={item.image}
+      >
+        <div class="relative flex flex-col h-full bg-[#FFFDF9] rounded-[2rem] border border-[#F0E4D8]/80 p-4 sm:p-5 shadow-[0_10px_30px_rgba(44,24,16,0.04)] hover:shadow-[0_20px_45px_rgba(227,74,111,0.12)] transition-all duration-500 group-hover:-translate-y-1">
+          
+          <!-- Image Container with Hover Zoom -->
+          <div class={`relative w-full ${item.heightClass} overflow-hidden rounded-[1.5rem] bg-[#F6EDE3]`}>
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            
+            <!-- Category and Tag Badges -->
+            <div class="absolute top-4 left-4 flex flex-wrap gap-2 z-10">
+              <span class="px-3 py-1 bg-white/90 backdrop-blur-md text-[11px] font-semibold text-[#2C1810] rounded-full shadow-xs">
+                {item.category}
+              </span>
+              <span class="px-3 py-1 bg-[#FDF1CE]/95 backdrop-blur-md text-[11px] font-semibold text-[#6B554B] rounded-full shadow-xs border border-[#FAEAAC]">
+                {item.tag}
+              </span>
+            </div>
+
+            <!-- Soft Gradient on bottom of image -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+            <!-- Quick View Button overlay -->
+            <div class="absolute bottom-4 right-4 z-10 opacity-90 group-hover:opacity-100 transition-opacity">
+              <button
+                type="button"
+                class="view-details-btn inline-flex items-center gap-1.5 px-4 py-2 bg-white/95 backdrop-blur-md hover:bg-[#E34A6F] text-[#2C1810] hover:text-white text-xs font-semibold rounded-full shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#E34A6F]"
+                aria-label={`View artistic case details for ${item.title}`}
+              >
+                <span>View Details</span>
+                <span>✦</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Editorial Card Metadata -->
+          <div class="pt-5 pb-2 px-1 flex flex-col justify-between flex-grow">
+            <div>
+              <div class="flex items-center justify-between text-xs text-[#8E7A70] mb-2 font-medium">
+                <span>{item.occasion}</span>
+                <span class="text-[#E34A6F]">Private Commission</span>
+              </div>
+              <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#2C1810] group-hover:text-[#E34A6F] transition-colors leading-snug">
+                {item.title}
+              </h3>
+              <p class="text-sm text-[#6B554B] mt-2.5 font-light leading-relaxed line-clamp-2">
+                {item.description}
+              </p>
+            </div>
+
+            <!-- Art Medium Details -->
+            <div class="pt-4 mt-4 border-t border-[#F0E4D8]/60 flex items-center justify-between text-xs text-[#8E7A70]">
+              <div class="flex items-center gap-1.5 truncate max-w-[80%]">
+                <span class="text-[#E34A6F]">✿</span>
+                <span class="truncate">{item.medium}</span>
+              </div>
+              <span class="text-[#2C1810] font-serif italic text-sm">Sculpted</span>
+            </div>
+          </div>
+
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Reassuring Portfolio Notice (Non-Ecommerce reminder) -->
+  <div class="mt-12 text-center p-6 rounded-2xl bg-[#FFFDF9]/80 border border-[#F0E4D8] max-w-2xl mx-auto">
+    <p class="text-xs sm:text-sm text-[#6B554B]">
+      <strong class="text-[#2C1810] font-serif text-base block sm:inline sm:mr-1">Original Works of Edible Art:</strong>
+      Every creation is bespoke and custom formulated. We do not maintain stock or mass produce; enquiries are welcomed 4 to 12 weeks prior to your event date.
+    </p>
+  </div>
+</section>
+
+<!-- Interactive Creation Dossier Modal -->
+<div 
+  id="creation-modal" 
+  class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto flex items-center justify-center transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div class="relative w-full max-w-3xl bg-[#FAF6F0] rounded-[2.5rem] border border-[#F3E2E6] shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    
+    <!-- Close button -->
+    <button 
+      id="modal-close-btn"
+      type="button" 
+      class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-[#E34A6F] hover:text-white text-[#2C1810] flex items-center justify-center shadow-md transition-colors focus:outline-none focus:ring-2 focus:ring-[#E34A6F]"
+      aria-label="Close details modal"
+    >
+      ✕
+    </button>
+
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <!-- Modal Image -->
+      <div class="relative h-72 md:h-full min-h-[350px] bg-[#2C1810]">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <span id="modal-category" class="px-3 py-1 bg-white/90 text-xs font-semibold text-[#2C1810] rounded-full"></span>
+        </div>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="p-6 sm:p-8 flex flex-col justify-between space-y-6">
+        <div>
+          <span class="text-[11px] font-bold tracking-wider uppercase text-[#E34A6F] block mb-1">
+            Artistic Commission Dossier
+          </span>
+          <h3 id="modal-title" class="font-serif text-2xl sm:text-3xl font-bold text-[#2C1810] leading-tight"></h3>
+          <p id="modal-desc" class="text-sm text-[#6B554B] mt-3 font-light leading-relaxed"></p>
+
+          <div class="space-y-3 mt-6 pt-6 border-t border-[#EFE4D8]">
+            <div>
+              <span class="text-xs font-semibold text-[#2C1810] uppercase tracking-wider block">Occasion & Setting</span>
+              <span id="modal-occasion" class="text-sm text-[#6B554B]"></span>
+            </div>
+            <div>
+              <span class="text-xs font-semibold text-[#2C1810] uppercase tracking-wider block">Artistic Medium & Techniques</span>
+              <span id="modal-medium" class="text-sm text-[#6B554B]"></span>
+            </div>
+            <div>
+              <span class="text-xs font-semibold text-[#2C1810] uppercase tracking-wider block">Flavor Notes & Gastronomy</span>
+              <span id="modal-flavors" class="text-sm text-[#6B554B]"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-[#EFE4D8] flex items-center gap-3">
+          <a 
+            href="#enquiries" 
+            id="modal-inquire-btn"
+            class="flex-1 text-center py-3 px-5 text-sm font-semibold text-white bg-[#E34A6F] hover:bg-[#CF375C] rounded-full shadow-sm transition-colors"
+          >
+            Enquire for Similar Commission
+          </a>
+          <button 
+            type="button" 
+            id="modal-secondary-close"
+            class="py-3 px-5 text-sm font-medium text-[#2C1810] bg-white border border-[#EFE4D8] rounded-full hover:bg-[#FCECEF]/40 transition-colors"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Filter logic
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedCategory = button.getAttribute('data-filter');
+
+      // Update button states
+      filterButtons.forEach(btn => {
+        btn.classList.remove('active', 'bg-[#E34A6F]', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-[#FFFDF9]', 'text-[#6B554B]', 'border', 'border-[#EFE4D8]');
+      });
+
+      button.classList.add('active', 'bg-[#E34A6F]', 'text-white', 'shadow-sm');
+      button.classList.remove('bg-[#FFFDF9]', 'text-[#6B554B]');
+
+      // Filter cards
+      portfolioCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (selectedCategory === 'All Creations' || cardCategory === selectedCategory) {
+          card.classList.remove('hidden');
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+        } else {
+          card.classList.add('hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+        }
+      });
+    });
+  });
+
+  // Modal logic
+  const modal = document.getElementById('creation-modal');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+  const modalSecondaryClose = document.getElementById('modal-secondary-close');
+  const modalInquireBtn = document.getElementById('modal-inquire-btn');
+
+  const modalImg = document.getElementById('modal-img') as HTMLImageElement;
+  const modalCategory = document.getElementById('modal-category');
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalOccasion = document.getElementById('modal-occasion');
+  const modalMedium = document.getElementById('modal-medium');
+  const modalFlavors = document.getElementById('modal-flavors');
+
+  const detailButtons = document.querySelectorAll('.view-details-btn');
+
+  detailButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = btn.closest('.portfolio-card');
+      if (!card) return;
+
+      const title = card.getAttribute('data-title') || '';
+      const category = card.getAttribute('data-category') || '';
+      const image = card.getAttribute('data-image') || '';
+      const desc = card.getAttribute('data-desc') || '';
+      const occasion = card.getAttribute('data-occasion') || '';
+      const medium = card.getAttribute('data-medium') || '';
+      const flavors = card.getAttribute('data-flavors') || '';
+
+      if (modalImg) {
+        modalImg.src = image;
+        modalImg.alt = title;
+      }
+      if (modalCategory) modalCategory.textContent = category;
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalDesc) modalDesc.textContent = desc;
+      if (modalOccasion) modalOccasion.textContent = occasion;
+      if (modalMedium) modalMedium.textContent = medium;
+      if (modalFlavors) modalFlavors.textContent = flavors;
+
+      modal?.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    });
+  });
+
+  const closeModal = () => {
+    modal?.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  modalCloseBtn?.addEventListener('click', closeModal);
+  modalSecondaryClose?.addEventListener('click', closeModal);
+  modalInquireBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>

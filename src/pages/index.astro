@@ -1,11 +1,54 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import CreationsGallery from '../components/CreationsGallery.astro';
+import ArtistStory from '../components/ArtistStory.astro';
+import SignatureCaseStudy from '../components/SignatureCaseStudy.astro';
+import InteractiveSculpture3D from '../components/InteractiveSculpture3D.astro';
+import CreativeProcess from '../components/CreativeProcess.astro';
+import ArtistStatementSection from '../components/ArtistStatementSection.astro';
+import CommissionEnquiries from '../components/CommissionEnquiries.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 ---
 
-<Layout>
-	<Welcome />
+<Layout 
+  title="CakeyTales — Bespoke Cake Artist & Haute Confections"
+  description="Personal brand and portfolio of CakeyTales, an independent cake artist specializing in sculptural wedding centerpieces, bespoke anniversary cakes, and handcrafted sweet heirlooms."
+>
+  <div class="relative min-h-screen flex flex-col bg-[#FAF6F0] selection:bg-[#E34A6F] selection:text-white">
+    <!-- Main Sticky Navigation -->
+    <Navbar />
+
+    <!-- Main Content Flow -->
+    <main class="flex-grow">
+      <!-- 1. Hero Section -->
+      <Hero />
+
+      <!-- 2. Featured Creations Portfolio (10 Best Cakes Catalogue) -->
+      <CreationsGallery />
+
+      <!-- 3. Artist Introduction & Personal Story -->
+      <ArtistStory />
+
+      <!-- 4. Featured Project / Signature Creation Case Study -->
+      <SignatureCaseStudy />
+
+      <!-- 5. Interactive 3D Sculptural Centerpiece (Three.js) -->
+      <InteractiveSculpture3D />
+
+      <!-- 6. Creative Process (4 Stages) -->
+      <CreativeProcess />
+
+      <!-- 7. Deep-Chocolate Artist Statement & Client Reflection -->
+      <ArtistStatementSection />
+
+      <!-- 8. Contact & Commission Enquiries (Form + WhatsApp/Instagram) -->
+      <CommissionEnquiries />
+    </main>
+
+    <!-- 9. Compact Elegant Footer -->
+    <Footer />
+  </div>
 </Layout>

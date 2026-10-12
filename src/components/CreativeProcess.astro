@@ -1,0 +1,110 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Inspiration & Context",
+    subtitle: "Exploring ideas, references, and occasion",
+    description: "Every commission begins with an open conversation. We explore your venue's architecture, floral styling, color harmonies, and the sentiment of your celebration to define an authentic artistic starting point.",
+    details: ["Moodboard synthesis", "Floral & palette harmony", "Private tasting consultation"],
+    icon: "✦"
+  },
+  {
+    step: "02",
+    title: "Concept & Architectural Design",
+    subtitle: "Developing proportioned visual sketches",
+    description: "From initial thoughts, we draft custom sketches balancing tier height, negative space, and sculptural silhouette. Here we decide on custom textures, sugar petals, and flavor pairings.",
+    details: ["Bespoke concept sketch", "Tier proportion calibration", "Flavor profile pairing"],
+    icon: "✎"
+  },
+  {
+    step: "03",
+    title: "Artisanal Craftsmanship",
+    subtitle: "Bringing the design to life with hand & heart",
+    description: "Baking in single small batches using heirloom extracts, Madagascar vanilla beans, and European butter. Over days, wafer-paper botanicals are hand-veined, sugar petals pulled, and buttercream sculpted.",
+    details: ["Scratch heritage baking", "Hand-sculpted sugar petals", "Luster & gold fleck finishing"],
+    icon: "✿"
+  },
+  {
+    step: "04",
+    title: "The Finished Creation",
+    subtitle: "Presenting the completed edible sculpture",
+    description: "On the day of your event, the artist personally delivers and assembles the centerpiece on-site. Every tier is inspected and illuminated under your celebration's ambient lighting for an unforgettable reveal.",
+    details: ["White-glove personal transport", "On-site floral styling", "Ceremonial presentation"],
+    icon: "♛"
+  }
+];
+---
+
+<section id="process" class="py-16 sm:py-24 bg-[#FAF6F0] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Editorial Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FCECEF] text-xs font-semibold tracking-wider text-[#E34A6F] uppercase mb-4">
+        <span>✦</span>
+        The Creative Journey
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C1810] tracking-tight">
+        How an Idea Becomes an <span class="text-[#E34A6F] italic font-normal">Edible Heirloom</span>
+      </h2>
+      <p class="text-base sm:text-lg text-[#6B554B] font-light mt-3 leading-relaxed">
+        A custom cake commission is an unhurried, intimate artistic collaboration. Here is how each centerpiece evolves from early reverie to your celebration's crowning moment.
+      </p>
+    </div>
+
+    <!-- Process Stages Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
+      
+      {steps.map((item, index) => (
+        <div class="relative flex flex-col justify-between bg-[#FFFDF9] rounded-[2rem] p-6 sm:p-7 border border-[#F0E4D8] shadow-[0_8px_25px_rgba(44,24,16,0.03)] hover:shadow-[0_15px_35px_rgba(227,74,111,0.08)] transition-all duration-300 hover:-translate-y-1 group">
+          
+          <div>
+            <!-- Step Header with Number & Icon -->
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-serif text-3xl sm:text-4xl font-bold text-[#E34A6F]/80 group-hover:text-[#E34A6F] transition-colors">
+                {item.step}
+              </span>
+              <span class="w-10 h-10 rounded-full bg-[#FCECEF] text-[#E34A6F] flex items-center justify-center text-sm font-bold shadow-xs">
+                {item.icon}
+              </span>
+            </div>
+
+            <!-- Titles -->
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#2C1810] group-hover:text-[#E34A6F] transition-colors leading-snug">
+              {item.title}
+            </h3>
+            <span class="text-xs font-medium text-[#8E7A70] tracking-wide block mt-1 uppercase">
+              {item.subtitle}
+            </span>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-sm text-[#6B554B] font-light leading-relaxed mt-4">
+              {item.description}
+            </p>
+          </div>
+
+          <!-- Stage Details Checkpoints -->
+          <div class="mt-6 pt-5 border-t border-[#F0E4D8]/70 space-y-2">
+            {item.details.map((detail) => (
+              <div class="flex items-center gap-2 text-xs text-[#8E7A70]">
+                <span class="text-[#E34A6F] text-[10px]">✦</span>
+                <span>{detail}</span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+
+    <!-- Bottom note on timeline -->
+    <div class="mt-14 max-w-xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 text-xs sm:text-sm text-[#8E7A70] bg-white/70 px-4 py-2 rounded-full border border-[#EBE0D5]">
+        <span class="text-[#E34A6F]">✿</span>
+        <span>Recommended booking window: <strong>6 to 12 weeks</strong> before your celebration</span>
+      </div>
+    </div>
+
+  </div>
+</section>
